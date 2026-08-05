@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>FilmCity — Filmler & Diziler & Animeler</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- ✅ Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+
+  <!-- Üst Menü -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-name">FilmCity</span>
+    </div>
+
+    <div class="controls">
+      <div class="tabs">
+        <button class="tab active" data-tab="movie">Filmler</button>
+        <button class="tab" data-tab="tv">Diziler</button>
+        <button class="tab" data-tab="anime">Animasyon</button>
+      </div>
+
+      <div class="search-container">
+        <input type="text" class="search-box" id="searchInput" placeholder="Film, dizi veya anime ara..." />
+        <i class="fas fa-search"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ ÜST SLIDER -->
+<div class="slider-head">
+  <h2 id="sliderTitle">Popüler Filmler</h2>
+</div>
+
+
+  <div class="swiper" id="moviesSwiper">
+
+      <div class="swiper-wrapper" id="sliderWrapper"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  
+
+  <!-- Ana İçerik -->
+  <main>
+    <section id="rows" class="rows"></section>
+
+    <section id="infiniteList" class="infinite-list">
+      <div id="grid" class="grid"></div>
+      <div id="loading" class="loading">Yükleniyor...</div>
+    </section>
+  </main>
+
+  <!-- Sol Panel -->
+  <aside id="detailPanel" class="detail-panel">
+    <button id="closePanel" class="close">✕</button>
+    <img id="detailPoster" alt="poster" />
+    <div class="info">
+      <h2 id="detailTitle"></h2>
+      <p id="detailYear" class="muted"></p>
+      <p id="detailGenres" class="muted"></p>
+      <p id="detailRating" class="muted"></p>
+      <p id="detailOverview"></p>
+      <iframe id="trailerFrame" frameborder="0" allowfullscreen></iframe>
+      <div class="panel-actions">
+        <a id="watchBtn" target="_blank" class="primary">İZLE</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Film izleme modal -->
+  <div id="watchModal" class="watch-modal">
+    <div class="watch-inner">
+      <button id="closeWatch" class="close-watch">✕</button>
+      <iframe id="watchFrame" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- ✅ Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- JS dosyaları -->
+  <script src="script.js"></script>
+
+  <!-- ❄️ Kar Efekti -->
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.createElement("canvas");
+    canvas.id = "snow";
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.pointerEvents = "none";
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.zIndex = "-1";
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext("2d");
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const numFlakes = 100;
+    const flakes = [];
+
+    for (let i = 0; i < numFlakes; i++) {
+      flakes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 2.5 + 1,
+        d: Math.random() * 0.8 + 0.5,
+      });
+    }
+
+    function drawFlakes() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      ctx.beginPath();
+      for (let f of flakes) {
+        ctx.moveTo(f.x, f.y);
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      moveFlakes();
+    }
+
+    let angle = 0;
+    function moveFlakes() {
+      angle += 0.0025;
+      for (let f of flakes) {
+        f.y += f.d * 1.4 + 0.6;
+        f.x += Math.sin(angle + f.y * 0.01) * 0.6;
+        if (f.y > height) {
+          f.y = -10;
+          f.x = Math.random() * width;
+        }
+      }
+    }
+
+    function animate() {
+      drawFlakes();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
+  });
+  </script>
+<!-- ✅ Swiper (Slider) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- ✅ Slider modülü -->
+<script src="slider.js"></script>
+
+</body>
+</html>
+

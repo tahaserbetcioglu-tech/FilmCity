@@ -1,0 +1,1260 @@
+:root {
+  --bg:#0d2238; /* 🔹 Eskisine göre daha açık, kar için uygun */
+  --panel:#102b45;
+  --muted:#b7c8da;
+  --accent:#1fb3ff;
+  --card:#13324d;
+  --glass: rgba(255,255,255,0.06);
+}
+
+body {
+  margin:0;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background: radial-gradient(circle at top, #123b5c 0%, #0d2238 70%);
+  color:#fff;
+  overflow-y:scroll;
+  position: relative;
+}
+
+*{box-sizing:border-box;scrollbar-width:thin;scrollbar-color:#1fb3ff #071428}
+body{
+  margin:0;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:#fff;
+  overflow-y:scroll;
+}
+
+/* ✅ HEADER */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.1));
+  position:sticky;
+  top:0;
+  z-index:60;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:40px;height:auto}
+.brand-name{font-weight:900;font-size:20px;color:var(--accent)}
+
+.controls {
+  display:flex;
+  gap:14px;
+  align-items:center;
+  width:100%;
+  justify-content:space-between;
+}
+
+
+  background:transparent;border:0;color:#cfe9ff;
+  padding:8px 12px;cursor:pointer;border-radius:8px;font-size:14px
+}
+/* ✅ Tabs - Şık Modern Stil */
+.tabs {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.tabs button {
+  background: transparent;
+  color: #cfe9ff;
+  border: 2px solid transparent;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.tabs button:hover {
+  color: var(--accent);
+  background: rgba(31,179,255,0.08);
+  border-color: rgba(31,179,255,0.4);
+}
+
+.tabs button.active {
+  background: var(--accent);
+  color: #001F2E;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(31,179,255,0.4);
+}
+
+
+.search input{
+  padding:8px 10px;border-radius:8px;border:0;
+  background:#08283a;color:#fff;width:280px;
+}
+
+.right-controls{display:flex;align-items:center;gap:10px}
+#themeBtn{
+  background:transparent;border:0;color:var(--muted);
+  cursor:pointer;font-size:18px
+}
+#profile img{
+  width:36px;height:36px;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(255,255,255,0.12);cursor:pointer
+}
+
+/* ✅ MAIN */
+main{padding:18px 24px}
+.rows .row{margin-bottom:18px}
+
+/* ✅ GRID FİLMLER */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:14px;
+}
+
+/* 🎬 Film Kartları - Cam Efektli Stil */
+/* ⚡ Daha hızlı hover geçişi */
+.grid-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .1s ease, box-shadow .1s ease, border .1s ease;
+  box-shadow: 0 0 8px rgba(31, 179, 255, 0.1);
+}
+
+.grid-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform .1s ease;
+}
+
+
+.grid-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(31, 179, 255, 0.4);
+  box-shadow: 0 0 18px rgba(31, 179, 255, 0.4);
+}
+
+.grid-card:hover img {
+  transform: scale(1.06);
+}
+
+.grid-card h4 {
+  padding: 8px;
+  font-size: 14px;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 0 10px 10px;
+}
+
+
+
+
+/* ✅ LOADING */
+.loading{text-align:center;padding:18px;color:var(--muted);display:none}
+
+/* ✅ DETAY PANEL */
+.detail-panel{
+  position:fixed;left:-420px;top:0;bottom:0;width:400px;
+  background:var(--panel);
+  z-index:200;
+  transition:left .35s;
+  box-shadow:4px 0 30px rgba(0,0,0,0.6);
+  padding:18px;overflow-y:auto;
+}
+.detail-panel.open{left:0}
+.detail-panel .close{
+  float:right;background:transparent;border:0;
+  color:#fff;font-size:20px;cursor:pointer;
+}
+.detail-panel img{
+  width:100%;border-radius:6px;margin-bottom:12px
+}
+.info h2{margin:6px 0}
+.muted{color:var(--muted);font-size:13px}
+#trailerFrame{
+  width:100%;height:220px;border-radius:8px;margin-top:10px;display:block;
+}
+.panel-actions{
+  display:flex;gap:10px;margin-top:12px
+}
+.primary{
+  background:var(--accent);color:#001F2E;border:0;
+  padding:10px 12px;border-radius:6px;cursor:pointer;
+}
+
+/* ✅ Modal */
+.watch-modal{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;align-items:center;
+  z-index:300
+}
+.watch-modal.show{display:flex}
+.watch-inner{width:90%;max-width:1200px;position:relative}
+.close-watch{
+  position:absolute;
+  top:-50px;right:0;
+  background:#e63b3b;border:0;color:#fff;
+  padding:8px 12px;border-radius:6px;cursor:pointer;
+}
+#watchFrame{width:100%;height:70vh;border-radius:8px}
+
+/* ✅ Responsive */
+@media (max-width:900px){
+  .search input{width:140px}
+  .detail-panel{width:100%;left:-100%}
+  .detail-panel.open{left:0}
+  #trailerFrame{height:200px}
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-logo {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px #a442f7);
+    transition: .25s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 12px #d691ff);
+}
+
+.brand-name {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #b96cff;
+    text-shadow: 0 0 6px #a442f7;
+}
+.search-box {
+    width: 450px;
+    height: 45px;
+    border-radius: 30px;
+    padding: 0 50px 0 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: .3s ease;
+}
+
+.search-box::placeholder {
+    color: #d8d8d8;
+}
+
+.search-box:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #fff;
+}
+
+/* 🔍 Arama ikonu */
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.search-container i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #ddd;
+}
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 20px auto;
+}
+
+.search-box {
+    width: 100%;
+    padding: 14px 55px 14px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    outline: none;
+    backdrop-filter: blur(8px);
+    transition: 0.3s ease;
+}
+
+.search-box::placeholder {
+    color: #bcc4d1;
+    transition: 0.3s;
+}
+
+.search-box:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #00aaff;
+    box-shadow: 0 0 12px rgba(0, 170, 255, 0.6);
+}
+
+.search-box:focus::placeholder {
+    opacity: 0.3;
+}
+
+.search-container {
+    position: relative;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: 20px; /* sağa biraz boşluk */
+}
+
+}
+
+.search-box:focus + i {
+    color: #0094dd;
+    opacity: 1;
+}
+/* 🎞️ Sinematik Grain + Glow Efekti */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -2; /* en arkada */
+  background: repeating-radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 2px,
+      transparent 3px,
+      transparent 6px
+  );
+  animation: grainMove 6s linear infinite;
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+}
+
+@keyframes grainMove {
+  0% { background-position: 0 0; }
+  50% { background-position: 100px 100px; }
+  100% { background-position: 0 0; }
+}
+
+/* 💡 Soft Glow — kar tanelerine ışıltı verir */
+#snow {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
+          drop-shadow(0 0 12px rgba(31, 179, 255, 0.3));
+  mix-blend-mode: screen;
+}
+.category-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.cat-btn {
+  background: rgba(31,179,255,0.15);
+  border: 1px solid rgba(31,179,255,0.4);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.25s;
+}
+
+.cat-btn:hover,
+.cat-btn.active {
+  background: var(--accent);
+  color: #001F2E;
+  box-shadow: 0 0 10px rgba(31,179,255,0.5);
+}
+/* 🌈 Kategori Butonları — Modern Stil */
+.category-bar {
+  padding: 18px 12px;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.cat-btn {
+  background: rgba(31,179,255,0.12);
+  border: 1px solid rgba(31,179,255,0.35);
+  color: #e9f6ff;
+  padding: 10px 22px;
+  border-radius: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 15px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Parlama efekti */
+.cat-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+}
+
+.cat-btn:hover::before {
+  left: 125%;
+}
+
+/* 💡 Hover ve aktif durum */
+.cat-btn:hover {
+  background: rgba(31,179,255,0.3);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(31,179,255,0.4);
+  transform: translateY(-2px);
+}
+
+.cat-btn.active {
+  background: linear-gradient(145deg, var(--accent), #3ddcff);
+  color: #001f2e;
+  border: none;
+  box-shadow: 0 0 20px rgba(31,179,255,0.6);
+}
+/* 🔹 TÜR SEÇİCİ - Modern Neon Glass Stil */
+#genreSelect {
+  appearance: none;
+  background: rgba(15, 25, 40, 0.65);
+  color: #eaf7ff;
+  border: 1px solid rgba(31, 179, 255, 0.8);
+  border-radius: 14px;
+  padding: 10px 40px 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(31, 179, 255, 0.2);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23eaf7ff' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+#genreSelect:hover {
+  background: rgba(25, 45, 70, 0.75);
+  border-color: #3ad1ff;
+  box-shadow: 0 0 15px rgba(31, 179, 255, 0.5);
+  transform: scale(1.03);
+}
+
+#genreSelect:focus {
+  border-color: #4df3ff;
+  box-shadow: 0 0 20px rgba(77, 243, 255, 0.6);
+}
+
+/* 🎞️ AÇILAN MENÜ - Cam & Glow Efekti */
+#genreSelect option {
+  background: rgba(10, 20, 35, 0.9);
+  color: #d7f3ff;
+  font-weight: 500;
+  border: none;
+  padding: 10px;
+  transition: all 0.25s ease;
+}
+
+/* Hover & Seçili görünüm */
+#genreSelect option:hover,
+#genreSelect option:checked {
+  background-color: rgba(31, 179, 255, 0.8);
+  color: #000;
+}
+
+/* 🔹 Chrome/Edge dropdown highlight düzeltme */
+select::-ms-expand {
+  display: none;
+}
+.cast-section {
+  margin-top: 15px;
+}
+.cast-section h3 {
+  margin-bottom: 8px;
+  color: #1fb3ff;
+}
+.cast-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+.cast-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.cast-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+.actor {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 80px;
+}
+.actor img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1fb3ff;
+  transition: transform 0.2s ease;
+}
+.actor img:hover {
+  transform: scale(1.1);
+}
+.actor span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.director {
+  margin-top: 15px;
+}
+.director h3 {
+  color: #1fb3ff;
+}
+.director .person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.director .person img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #1fb3ff;
+  object-fit: cover;
+}
+.director .person span {
+  font-size: 14px;
+  color: #fff;
+}
+/* 🎬 Yönetmen & Oyuncular Bölümü — Neon Glass Stil */
+.director {
+  margin-top: 25px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 18px rgba(31, 179, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(31, 179, 255, 0.25);
+  transition: 0.3s ease;
+}
+.director:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(31, 179, 255, 0.4);
+}
+.director h3 {
+  color: #6ed0ff;
+  font-size: 18px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.director h3::before {
+  content: "🎬";
+  font-size: 20px;
+}
+.director .person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+.director .person:hover {
+  background: rgba(31, 179, 255, 0.15);
+}
+.director .person img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 2px solid #1fb3ff;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(31, 179, 255, 0.4);
+  transition: transform 0.25s ease;
+}
+.director .person img:hover {
+  transform: scale(1.1);
+}
+.director .person span {
+  font-size: 15px;
+  color: #e9f6ff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ⭐ Oyuncular Bölümü — Modern Stil */
+.cast-section {
+  margin-top: 25px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 18px rgba(31, 179, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(31, 179, 255, 0.25);
+}
+.cast-section h3 {
+  margin-bottom: 12px;
+  color: #6ed0ff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cast-section h3::before {
+  content: "⭐";
+  font-size: 20px;
+}
+.cast-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 14px;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+.cast-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.cast-scroll::-webkit-scrollbar-thumb {
+  background: rgba(31, 179, 255, 0.4);
+  border-radius: 4px;
+}
+.actor {
+  flex: 0 0 auto;
+  text-align: center;
+  width: 90px;
+}
+.actor img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #1fb3ff;
+  box-shadow: 0 0 12px rgba(31, 179, 255, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.actor img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(31, 179, 255, 0.6);
+}
+.actor span {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+/* 🎬 Yönetmen ve Oyuncular — Cam Efektli Kartlar */
+.glass-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-top: 18px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.glass-box h3 {
+  color: #64caff;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.person-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.person-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #1fb3ff;
+  object-fit: cover;
+}
+
+.person-card span {
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.cast-section .cast-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 10px 0;
+  scrollbar-color: rgba(31,179,255,0.5) transparent;
+}
+
+.cast-section .actor img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #1fb3ff;
+  object-fit: cover;
+  transition: transform .2s;
+}
+
+.cast-section .actor img:hover {
+  transform: scale(1.08);
+}
+
+.cast-section .actor span {
+  display: block;
+  text-align: center;
+  margin-top: 6px;
+  color: #fff;
+  font-size: 13px;
+}
+/* 🎥 Fragman Önizleme Butonu Efekti */
+.trailer-preview {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.trailer-preview:hover {
+  transform: scale(1.02);
+}
+
+.trailer-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.trailer-preview:hover::after {
+  opacity: 1;
+}
+
+/* Play ikonuna parlama efekti */
+.trailer-preview svg {
+  transition: filter 0.4s ease-in-out, transform 0.3s ease;
+}
+
+.trailer-preview:hover svg {
+  filter: drop-shadow(0 0 10px rgba(255, 60, 60, 0.9));
+  transform: scale(1.1);
+}
+
+/* =========================================================
+   🎞️ FILMCITY TOP SLIDER (Swiper) – ÇAKIŞMASIZ
+   script.js ile otomatik eklenen slider için
+========================================================= */
+
+.movie-slider {
+  position: relative;
+  padding: 14px 0 24px;
+  margin-top: 6px;
+}
+
+.movie-slider .swiper {
+  padding: 10px 46px;
+}
+
+/* Kart */
+.movie-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow: 0 12px 34px rgba(0,0,0,.45);
+  cursor: pointer;
+}
+
+/* Görsel */
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  transition: transform .35s ease;
+}
+
+.movie-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Üst rozetler */
+.movie-card .badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.movie-card .badge {
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  background: rgba(255,255,255,.92);
+  color: #111;
+  backdrop-filter: blur(6px);
+}
+
+.movie-card .badge.cc {
+  background: rgba(255,255,255,.92);
+}
+
+/* Rating */
+.movie-card .rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #f7c948;
+  text-shadow: 0 2px 10px rgba(0,0,0,.7);
+  z-index: 3;
+}
+
+/* Yıl */
+.movie-card .year {
+  position: absolute;
+  bottom: 56px;
+  left: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 2px 10px rgba(0,0,0,.6);
+  z-index: 3;
+}
+
+/* Başlık */
+.movie-card .title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 14px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.88),
+    rgba(0,0,0,.35),
+    rgba(0,0,0,0)
+  );
+  z-index: 2;
+}
+
+/* Hover overlay */
+.movie-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: background .25s ease;
+  z-index: 1;
+}
+
+.movie-card:hover::after {
+  background: rgba(0,0,0,.18);
+}
+
+/* Swiper oklar */
+.movie-slider .swiper-button-prev,
+.movie-slider .swiper-button-next {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.6);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,.45);
+}
+
+.movie-slider .swiper-button-prev::after,
+.movie-slider .swiper-button-next::after {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.movie-slider .swiper-button-prev {
+  left: 8px;
+}
+
+.movie-slider .swiper-button-next {
+  right: 8px;
+}
+
+/* Mobil ayar */
+@media (max-width: 600px) {
+  .movie-card .title {
+    font-size: 15px;
+    padding: 12px;
+  }
+  .movie-card .year {
+    font-size: 13px;
+    bottom: 48px;
+  }
+}
+
+/* =========================
+   🎯 Gelecek Filmler Şeridi (okla kaydırmalı)
+========================= */
+.upcoming-row{
+  margin: 18px 0 8px;
+  padding: 8px 24px 18px;
+}
+
+.upcoming-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 12px;
+}
+
+.upcoming-head h3{
+  margin:0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.upcoming-scroll{
+  display:flex;
+  gap: 26px;
+  overflow-x:auto;
+  padding-bottom: 10px;
+  scroll-behavior:smooth;
+}
+
+.upcoming-scroll::-webkit-scrollbar{ height: 8px; }
+.upcoming-scroll::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.25);
+  border-radius: 10px;
+}
+
+.upcoming-item{ flex: 0 0 auto; width: 170px; }
+
+.upcoming-btn{
+  width:100%;
+  background: transparent;
+  border:0;
+  padding:0;
+  cursor:pointer;
+  text-align:center;
+  color:#fff;
+}
+
+.upcoming-poster{
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 999px;
+  overflow:hidden;
+  border: 4px solid #e33b44;
+  box-shadow: 0 10px 26px rgba(0,0,0,.45);
+}
+
+.upcoming-poster img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.upcoming-date{
+  position:absolute;
+  left:50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  background: #e33b44;
+  color:#fff;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+  white-space: nowrap;
+}
+
+.upcoming-title{
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.upcoming-loading{
+  color: rgba(255,255,255,.7);
+  padding: 12px 0;
+}
+
+/* ✅ sağ kaydırma oku */
+.upcoming-next{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 12px 26px rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  transition: transform .15s ease, opacity .15s ease;
+  opacity: .95;
+}
+
+.upcoming-next:hover{
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+.upcoming-next i{
+  font-size: 18px;
+  font-weight: 900;
+}
+.grid-card, .grid-card img { will-change: transform; }
+.slider-head{
+  padding: 10px 24px;
+}
+
+#sliderTitle{
+  margin:0;
+  font-size:26px;
+  font-weight:900;
+  color:#1fb3ff; /* ✅ mavi neon */
+  letter-spacing:.2px;
+  text-shadow:
+    0 0 6px rgba(31,179,255,.75),
+    0 0 14px rgba(31,179,255,.55),
+    0 0 26px rgba(31,179,255,.35);
+}
+
+}
+/* 🔥 Başlık Harf Harf Animasyon */
+#sliderTitle .char{
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+#sliderTitle.title-animate .char{
+  animation: titleChar .5s ease forwards;
+}
+
+@keyframes titleChar{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Logo ile sekmeler arasına boşluk */
+.topbar {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  margin-right: 36px; /* 👈 boşluğu buradan ayarlarsın */
+}
+
+/* Sekmelerin kendi içinde daha ferah durması */
+.tabs {
+  display: flex;
+  gap: 14px;
+}
+/* 🔮 FilmCity Mor Neon Logo */
+.brand-name {
+  font-weight: 900;
+  font-size: 28px;
+  color: #c77dff; /* saf mor neon */
+
+  text-shadow:
+    0 0 6px rgba(199,125,255,0.9),
+    0 0 14px rgba(199,125,255,0.8),
+    0 0 28px rgba(199,125,255,0.6),
+    0 0 45px rgba(199,125,255,0.45);
+
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover → daha güçlü mor parıltı */
+.brand-name:hover {
+  text-shadow:
+    0 0 10px rgba(199,125,255,1),
+    0 0 24px rgba(199,125,255,0.95),
+    0 0 50px rgba(199,125,255,0.8),
+    0 0 80px rgba(199,125,255,0.6);
+  transform: scale(1.05);
+}
+/* Slider ile alt içerik arasında boşluk */
+.movie-slider {
+  margin-bottom: 40px;
+}
+/* Slider kartları mavi neon hover */
+.movie-slider .movie-card {
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+
+.movie-slider .movie-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 0 10px rgba(31,179,255,0.8),
+    0 0 25px rgba(31,179,255,0.6),
+    0 0 45px rgba(31,179,255,0.4);
+}
+/* ===============================
+   SWIPER OK TUŞLARI – MODERN NEON
+================================ */
+
+/* Ortak stil */
+.swiper-button-prev,
+.swiper-button-next {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(10, 20, 40, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 180, 255, 0.35);
+  box-shadow:
+    0 0 10px rgba(0,180,255,.6),
+    inset 0 0 12px rgba(0,180,255,.25);
+  transition: all .25s ease;
+}
+
+/* Ok ikonları */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 18px;
+  font-weight: 900;
+  color: #4fc3ff;
+  text-shadow:
+    0 0 6px rgba(79,195,255,.9),
+    0 0 14px rgba(79,195,255,.7);
+}
+
+/* Hover efekti */
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  transform: scale(1.12);
+  background: rgba(0, 180, 255, 0.15);
+  box-shadow:
+    0 0 18px rgba(0,180,255,1),
+    0 0 35px rgba(0,180,255,.8),
+    inset 0 0 18px rgba(0,180,255,.6);
+}
+
+/* Tıklama hissi */
+.swiper-button-prev:active,
+.swiper-button-next:active {
+  transform: scale(0.96);
+}
+
+/* Mobilde daha küçük */
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* ===============================
+   SWIPER OK – ARKA PLAN KALDIR
+================================ */
+
+/* Arka planı tamamen kaldır */
+.swiper-button-prev,
+.swiper-button-next {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Sadece neon ok kalsın */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 26px;
+  font-weight: 900;
+  color: #4fc3ff;
+  text-shadow:
+    0 0 6px rgba(79,195,255,0.9),
+    0 0 14px rgba(79,195,255,0.8),
+    0 0 28px rgba(0,180,255,0.6);
+  transition: all .25s ease;
+}
+
+/* Hover'da daha güçlü neon */
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover::after {
+  color: #7fd8ff;
+  text-shadow:
+    0 0 10px rgba(127,216,255,1),
+    0 0 24px rgba(0,200,255,.9),
+    0 0 40px rgba(0,200,255,.7);
+  transform: scale(1.15);
+}
+
+/* Tıklama hissi */
+.swiper-button-prev:active::after,
+.swiper-button-next:active::after {
+  transform: scale(0.95);
+}
